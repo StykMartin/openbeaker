@@ -79,10 +79,7 @@ def are_you_sure_prompt(prompt=None):
     sys.stderr.write(prompt)
     user_input = sys.stdin.readline().strip()
 
-    if user_input == "YES":
-        return True
-
-    return False
+    return user_input == "YES"
 
 
 class Plugin(object):
@@ -408,7 +405,7 @@ class CommandOptionParser(optparse.OptionParser):
             command = self.default_command
             # keep args as is
 
-        if not command in self.container.plugins:
+        if command not in self.container.plugins:
             self.error("unknown command: %s" % command)
 
         CommandClass = self.container[command]

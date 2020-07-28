@@ -1,4 +1,3 @@
-
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
@@ -8,9 +7,9 @@ import unittest
 import pkg_resources
 import lxml.etree
 
-class SchemaTestBase(unittest.TestCase):
 
-    schema_doc = None # filled by setUpClass
+class SchemaTestBase(unittest.TestCase):
+    schema_doc = None  # filled by setUpClass
 
     def assert_valid(self, xml):
         schema = lxml.etree.RelaxNG(self.schema_doc)
@@ -22,12 +21,13 @@ class SchemaTestBase(unittest.TestCase):
         messages = [str(e.message) for e in schema.error_log]
         self.assert_(error_message in messages, messages)
 
+
 class TaskSchemaTest(SchemaTestBase):
 
     @classmethod
     def setUpClass(cls):
         cls.schema_doc = lxml.etree.parse(pkg_resources.resource_stream(
-        'bkr.common', 'schema/beaker-task.rng'))
+            'bkr.common', 'schema/beaker-task.rng'))
 
     def test_minimal_task(self):
         self.assert_valid('''
@@ -207,7 +207,7 @@ class JobSchemaTest(SchemaTestBase):
                 </recipeSet>
             </job>
             ''',
-            'Extra element autopick in interleave')
+                              'Extra element autopick in interleave')
 
     def test_guestrecipe(self):
         self.assert_valid('''
@@ -266,11 +266,10 @@ class JobSchemaTest(SchemaTestBase):
                 </recipeSet>
             </job>
             ''',
-            'Invalid sequence in interleave')
+                              'Invalid sequence in interleave')
 
-    #https://bugzilla.redhat.com/show_bug.cgi?id=851354
+    # https://bugzilla.redhat.com/show_bug.cgi?id=851354
     def test_force_system(self):
-
         # force and hostRequires are mutually exclusive
         self.assert_not_valid('''
             <job>
@@ -420,7 +419,7 @@ class JobSchemaTest(SchemaTestBase):
                 </recipeSet>
             </job>
             ''',
-            'Element hostRequires has extra content: disk')
+                              'Element hostRequires has extra content: disk')
 
     def test_job_with_reservesys(self):
         self.assert_valid('''
@@ -453,4 +452,3 @@ class JobSchemaTest(SchemaTestBase):
                 </recipeSet>
             </job>
             ''')
-

@@ -235,13 +235,11 @@ class CookieTransport(xmlrpclib.Transport):
 
             proxy = location
 
-        proxy_settings = {
+        return {
             "proxy": proxy,
             "proxy_user": proxy_user,
             "proxy_password": proxy_password,
         }
-
-        return proxy_settings
 
     def make_connection(self, host):
 

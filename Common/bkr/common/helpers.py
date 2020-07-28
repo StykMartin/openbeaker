@@ -41,7 +41,7 @@ class BkrThreadPool:
         in_q = queue.Queue()
         cls._qpool[name] = _QueueAccess(in_q, out_q)
         cls._tpool[name] = []
-        for i in range(num):
+        for _ in range(num):
             t = Thread(target=target_f, args=target_args)
             cls._tpool[name].append(t)
             t.setDaemon(False)

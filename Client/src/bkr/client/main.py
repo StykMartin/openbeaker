@@ -153,9 +153,7 @@ def main():
         try:
             sys.stdout.close()
         except IOError as e:
-            if e.errno == errno.EPIPE:
-                pass
-            else:
+            if e.errno != errno.EPIPE:
                 raise
 
 

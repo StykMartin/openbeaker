@@ -181,9 +181,8 @@ class CookieTransport(xmlrpclib.Transport):
         self.cookiejar = cookiejar or cookielib.CookieJar()
 
         if hasattr(self.cookiejar, "load"):
-            if not os.path.exists(self.cookiejar.filename):
-                if hasattr(self.cookiejar, "save"):
-                    self.cookiejar.save(self.cookiejar.filename)
+            if not os.path.exists(self.cookiejar.filename) and hasattr(self.cookiejar, "save"):
+                self.cookiejar.save(self.cookiejar.filename)
             self.cookiejar.load(self.cookiejar.filename)
 
     def _get_proxy(self, **kwargs):
@@ -229,13 +228,11 @@ class CookieTransport(xmlrpclib.Transport):
 
             proxy = location
 
-        proxy_settings = {
+        return {
             "proxy": proxy,
             "proxy_user": proxy_user,
             "proxy_password": proxy_password,
         }
-
-        return proxy_settings
 
     def make_connection(self, host):
 

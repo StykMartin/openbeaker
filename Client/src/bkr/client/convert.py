@@ -45,7 +45,7 @@ class Convert(object):
         rc = ""
         for node in nodelist:
             if node.nodeType == node.TEXT_NODE:
-                rc = rc + node.data
+                rc += node.data
         return rc
 
     def handle_distroRequires(self, requires):
@@ -119,14 +119,14 @@ class Convert(object):
     def handle_partition(self, node):
         partition = self.doc.createElement('partition')
         for child in node.childNodes:
-            if child.nodeName == 'type':
-                partition.setAttribute('type', self.getText(child.childNodes))
-            if child.nodeName == 'name':
-                partition.setAttribute('name', self.getText(child.childNodes))
-            if child.nodeName == 'size':
-                partition.setAttribute('size', self.getText(child.childNodes))
             if child.nodeName == 'fs':
                 partition.setAttribute('fs', self.getText(child.childNodes))
+            elif child.nodeName == 'name':
+                partition.setAttribute('name', self.getText(child.childNodes))
+            elif child.nodeName == 'size':
+                partition.setAttribute('size', self.getText(child.childNodes))
+            elif child.nodeName == 'type':
+                partition.setAttribute('type', self.getText(child.childNodes))
         return partition
 
     def handle_recipes(self, recipes):

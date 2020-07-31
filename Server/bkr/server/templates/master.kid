@@ -169,14 +169,6 @@ from bkr.server.reports import Reports
 
 <div id="container" class="container-fluid">
 
-    <?python
-    from bkr.server import motd
-    ?>
-    <div class="alert motd alert-info alert-block" py:if="motd.get_motd()">
-        <h4>Message of the day</h4>
-        ${XML(motd.get_motd())}
-    </div>
-
     <div class="alert flash" py:if="value_of('tg_flash', None)">
         ${tg_flash}
         <a class="close" data-dismiss="alert" href="#"><i class="fa fa-times" /></a>

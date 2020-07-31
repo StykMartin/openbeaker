@@ -37,7 +37,7 @@ setup(
         get_compose_layout()
     },
     data_files=[
-        ('beaker-integration-tests', ['motd.xml']),
+        'beaker-integration-tests'
     ],
     namespace_packages=['bkr'],
     install_requires=[

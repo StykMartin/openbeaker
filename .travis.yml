@@ -7,5 +7,12 @@ addons:
   apt:
     packages:
       - cpu-checker
+      - qemu-kvm
+      - libvirt-bin
+      - virtinst
+      - bridge-utils
+      - libguestfs-tools
 
 before_install: ./Misc/travis.sh before_install
+
+install: ./Misc/travis.sh install

@@ -11,36 +11,6 @@ If you have a basic understanding of test frameworks and don't want to install
 the :program:`beaker-wizard`, you can jump right to the
 :ref:`writing-example-task-implementation` part of the tutorial.
 
-Prerequisites
--------------
-
-The :ref:`beaker-wizard <beaker-wizard>` utility provides a guided step by
-step method to create a task without the need to manually create all of the
-necessary files.
-
-In case you do not have :program:`beaker-wizard` available, install it by
-following the installation guide for the :ref:`bkr client
-<installing-bkr-client>`.
-
-Generating the skeleton using beaker-wizard
--------------------------------------------
-
-Create a directory with the name ``ext4-task``. The directory will hold metadata
-and task executable. From your terminal, type::
-
-     $ mkdir ext4-task
-     $ cd ext4-task
-     $ beaker-wizard --current-directory
-
-and follow :program:`beaker-wizard`. If in doubt choose the default values offered by the
-wizard. As a **test-name** use ``ext4-test``. Finally, press the enter key to
-create the task::
-
-    File PURPOSE written
-    File runtest.sh written
-    File Makefile written
-
-
 .. _writing-example-task-implementation:
 
 Implementing the test

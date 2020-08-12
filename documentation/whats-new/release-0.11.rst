@@ -35,7 +35,7 @@ Documentation improvements
   `Sphinx <http://sphinx-doc.org/>`_. It was also re-arranged to improve 
   clarity.
 - The :doc:`Creating a task <../user-guide/example-task>` section has been improved and updated to describe 
-  using :ref:`beaker-wizard <beaker-wizard>`. (Contributed by Amit Saha in 
+  using :program:`beaker-wizard`. (Contributed by Amit Saha in
   :issue:`872428`.)
 - New sections were added to the Administration Guide describing :ref:`Graphite
   integration <graphite>` and :ref:`reporting queries <reporting-queries>`. 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-set -eux
+set -ev
 
 method=$1
 
@@ -20,6 +20,7 @@ function travis_install()
   SUM_URL="https://cloud.centos.org/centos/7/images/sha256sum.txt"
   MEMORY=4096
   VCPUS="$(nproc)"
+
   sudo usermod -a -G kvm,libvirt,libvirt-qemu "$USER"
 
   # Spin that virtualization
@@ -67,23 +68,29 @@ function travis_install()
     for i in $(seq 0 29); do
     echo "loop $i"
       sleep 6s
-      # Get the leases, but tee it so it's easier to debug
       sudo virsh net-dhcp-leases default | tee dhcp-leases.txt
 
-      # get our ipaddress
       ipaddy="$(grep centosvm dhcp-leases.txt | awk '{print $5}' | cut -d'/' -f 1-1)"
       if [ -n "$ipaddy" ]; then
-          # found it, we're done looking, print it for debug logs
           echo "ipaddy: $ipaddy"
           break
     fi
-    # it's empty/not found, loop back and try again.
   done
 
   if [ -z "$ipaddy" ]; then
       echo "ipaddy zero length, exiting with error 1"
       exit 1
   fi
+
+  echo $ipaddy > $HOME/vm-ip
+
+}
+
+function travis_script()
+{
+  DOGFOOD="Misc/travis-dogfood.sh"
+  IPADDR="$(head -n 1 $HOME/vm-ip)"
+  ssh -v -tt -o StrictHostKeyChecking=no "root@$IPADDR" "/root/openbeaker/$DOGFOOD"
 }
 
 travis_"$method"

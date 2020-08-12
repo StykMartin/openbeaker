@@ -28,8 +28,6 @@ man_pages = [
         [u'The Beaker team <beaker-devel@lists.fedorahosted.org>'], 1),
     ('man/bkr-workflow-xslt', 'bkr-workflow-xslt', 'XSLT-based Beaker job generator',
         [u'David Sommerseth <davids@redhat.com>'], 1),
-    ('man/beaker-wizard', 'beaker-wizard', 'Tool to ease the creation of a new Beaker task',
-        [u'Petr Splichal <psplicha@redhat.com>'], 1),
 ]
 man_server_pages = [
     ('admin-guide/man/beaker-create-kickstart',
@@ -76,7 +74,6 @@ if six.PY3:
 import sys
 import os
 import re
-import docutils.core, docutils.nodes
 
 def strip_decorator_args(app, what, name, obj, options, signature, return_annotation):
     """

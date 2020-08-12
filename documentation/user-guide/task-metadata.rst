@@ -4,9 +4,7 @@ Task metadata
 =============
 
 This section describes the metadata which must be defined in each Beaker task.
-The beaker-wizard utility will help you to populate this metadata correctly
-when creating a new task (see :doc:`An example task <example-task>`). A sample
-Makefile is also included in the ``rhts-devel`` package as
+A sample Makefile is included in the ``rhts-devel`` package as
 ``/usr/share/doc/rhts-devel-*/Makefile.template``.
 
 These details apply to tasks written using the default harness (``beah``).

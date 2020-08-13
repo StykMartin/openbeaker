@@ -90,7 +90,7 @@ function travis_script()
 {
   DOGFOOD="Misc/travis-dogfood.sh"
   IPADDR="$(head -n 1 $HOME/vm-ip)"
-  ssh -v -tt -o StrictHostKeyChecking=no "root@$IPADDR" "/root/openbeaker/$DOGFOOD"
+  ssh -tt -o StrictHostKeyChecking=no "root@$IPADDR" "/root/openbeaker/$DOGFOOD"
 }
 
 travis_"$method"

@@ -400,8 +400,7 @@ def stop_process(name):
 
 
 def setup_package():
-    assert os.path.exists(CONFIG_FILE), 'Config file %s must exist' % CONFIG_FILE
-    load_config(configfile=CONFIG_FILE)
+    assert os.path.exists(load_config(configfile=CONFIG_FILE)), 'Config file %s must exist' % CONFIG_FILE
     log_to_stream(sys.stdout, level=logging.DEBUG)
 
     from bkr.inttest import data_setup

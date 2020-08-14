@@ -245,6 +245,7 @@ export BEAKER_SERVER_BASE_URL="http://$(hostname -f)/bkr/"
 
 # Let's use edited config
 export BEAKER_CONFIG_FILE="/etc/beaker/server.cfg"
+export BEAKER_CLIENT_CONF="/etc/beaker/client.conf"
 
 # Be more progressive!
 yum install -y python-nose-progressive

@@ -242,6 +242,10 @@ if [ -e /etc/cron.d/beaker ] ; then
 fi
 export BEAKER_LABCONTROLLER_HOSTNAME="$(hostname -f)"
 export BEAKER_SERVER_BASE_URL="http://$(hostname -f)/bkr/"
+
+# Let's use edited config
+export BEAKER_CONFIG_FILE="/etc/beaker/server.cfg"
+
 python -c '__requires__ = ["CherryPy < 3.0"]; import pkg_resources; from nose.core import main; main()' \
 -v --logging-format='%(asctime)s %(name)s %(levelname)s %(message)s' \
 bkr.inttest

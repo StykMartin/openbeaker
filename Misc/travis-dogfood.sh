@@ -243,6 +243,7 @@ fi
 export BEAKER_LABCONTROLLER_HOSTNAME="$(hostname -f)"
 export BEAKER_SERVER_BASE_URL="http://$(hostname -f)/bkr/"
 export BEAKER_CLIENT_COMMAND=bkr
+export export BEAKER_WIZARD_COMMAND="beaker-wizard"
 
 # Let's use edited config
 export BEAKER_CONFIG_FILE="/etc/beaker/server.cfg"

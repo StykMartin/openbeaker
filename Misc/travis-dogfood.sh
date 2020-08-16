@@ -96,8 +96,8 @@ __EOF__
   systemctl start beakerd
 
   echo "Add lab controllers"
-  curl -v -f -s -o /dev/null -c cookie -d user_name=admin -d password=testing -d login1 http://$SERVER/bkr/login
-  curl -v -f -s -o /dev/null -b cookie -d fqdn=$SERVER -d lusername=host/$SERVER -d lpassword=testing -d email=root@$SERVER.com http://$SERVER/bkr/labcontrollers/save
+  curl -f -s -o /dev/null -c cookie -d user_name=admin -d password=testing -d login1 http://$SERVER/bkr/login
+  curl -f -s -o /dev/null -b cookie -d fqdn=$SERVER -d lusername=host/$SERVER -d lpassword=testing -d email=root@$SERVER.com http://$SERVER/bkr/labcontrollers/save
 
   echo "Enable rsync for fake archive server"
   generate_rsync_cfg
@@ -250,7 +250,7 @@ export BEAKER_CLIENT_CONF="/etc/beaker/client.conf"
 
 python -c '__requires__ = ["CherryPy < 3.0"]; import pkg_resources; from nose.core import main; main()' \
 -v --logging-format='%(asctime)s %(name)s %(levelname)s %(message)s' \
-bkr.inttest
+bkr.inttest.client
 
 
 

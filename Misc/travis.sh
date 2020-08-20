@@ -45,7 +45,7 @@ function travis_install()
 
   sudo virt-sysprep -a "$IMAGE_BASE_NAME" \
   --root-password password:123456 \
-  --hostname centosvm \
+  --hostname breaker.com \
   --mkdir /root/.ssh \
   --upload "$HOME/.ssh/id_rsa.pub:/root/.ssh/authorized_keys" \
   --chmod '0600:/root/.ssh/authorized_keys' \
@@ -55,7 +55,7 @@ function travis_install()
   --selinux-relabel
 
   sudo virt-install \
-  --name centosvm \
+  --name breaker.com \
   --memory $MEMORY \
   --vcpus $VCPUS \
   --disk "$IMAGE_BASE_NAME" \
@@ -70,7 +70,7 @@ function travis_install()
       sleep 6s
       sudo virsh net-dhcp-leases default | tee dhcp-leases.txt
 
-      ipaddy="$(grep centosvm dhcp-leases.txt | awk '{print $5}' | cut -d'/' -f 1-1)"
+      ipaddy="$(grep breaker.com dhcp-leases.txt | awk '{print $5}' | cut -d'/' -f 1-1)"
       if [ -n "$ipaddy" ]; then
           echo "ipaddy: $ipaddy"
           break

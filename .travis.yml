@@ -13,21 +13,51 @@ addons:
       - bridge-utils
       - libguestfs-tools
 
+stages:
+  - build
+  - tests
+
 jobs:
   fast_finish: false
   include:
-    - before_install: ./Misc/travis.sh before_install
+    - stage: build
+      before_install: ./Misc/travis.sh before_install
+      install: skip
+      script: ./Misc/travis-create-vm-image.sh
+      workspaces:
+        create:
+          name: build-ws
+          paths:
+            - $HOME/.ssh/
+            - $HOME/CentOS-7-x86_64-GenericCloud-2003.raw
+      cache:
+        directories:
+          - $HOME/.ssh/
+          - $HOME/CentOS-7-x86_64-GenericCloud-2003.raw
+      git:
+        submodules: false
+    - stage: tests
       install: ./Misc/travis.sh install
       script: ./Misc/travis.sh script
       name: Client tests
       env: EXEC_TESTS=bkr.inttest.client
-    - before_install: ./Misc/travis.sh before_install
-      install: ./Misc/travis.sh install
+      workspaces:
+        use: build-ws
+      git:
+        submodules: false
+    - install: ./Misc/travis.sh install
       script: ./Misc/travis.sh script
       name: Lab controller tests
       env: EXEC_TESTS=bkr.inttest.labcontroller
-    - before_install: ./Misc/travis.sh before_install
-      install: ./Misc/travis.sh install
+      workspaces:
+        use: build-ws
+      git:
+        submodules: false
+    - install: ./Misc/travis.sh install
       script: ./Misc/travis.sh script
       name: Server tests
       env: EXEC_TESTS=bkr.inttest.server
+      workspaces:
+        use: build-ws
+      git:
+        submodules: false

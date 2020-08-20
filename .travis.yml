@@ -13,6 +13,21 @@ addons:
       - bridge-utils
       - libguestfs-tools
 
-before_install: ./Misc/travis.sh before_install
-install: ./Misc/travis.sh install
-script: ./Misc/travis.sh script
+jobs:
+  fast_finish: false
+  include:
+    - before_install: ./Misc/travis.sh before_install
+      install: ./Misc/travis.sh install
+      script: ./Misc/travis.sh script
+      name: Client tests
+      env: EXEC_TESTS=bkr.inttest.client
+    - before_install: ./Misc/travis.sh before_install
+      install: ./Misc/travis.sh install
+      script: ./Misc/travis.sh script
+      name: Lab controller tests
+      env: EXEC_TESTS=bkr.inttest.labcontroller
+    - before_install: ./Misc/travis.sh before_install
+      install: ./Misc/travis.sh install
+      script: ./Misc/travis.sh script
+      name: Server tests
+      env: EXEC_TESTS=bkr.inttest.server

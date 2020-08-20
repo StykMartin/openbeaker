@@ -1,6 +1,7 @@
 #!/bin/bash
 
 set -ex
+tests=$1
 
 SERVER=$(hostname -f)
 
@@ -251,7 +252,4 @@ export BEAKER_CLIENT_CONF="/etc/beaker/client.conf"
 
 python -c '__requires__ = ["CherryPy < 3.0"]; import pkg_resources; from nose.core import main; main()' \
 -v --logging-format='%(asctime)s %(name)s %(levelname)s %(message)s' \
-bkr.inttest.client
-
-
-
+$tests

@@ -249,6 +249,7 @@ export export BEAKER_WIZARD_COMMAND="beaker-wizard"
 # Let's use edited config
 export BEAKER_CONFIG_FILE="/etc/beaker/server.cfg"
 export BEAKER_CLIENT_CONF="/etc/beaker/client.conf"
+export BEAKER_LABCONTROLLER_CONFIG_FILE="/etc/beaker/labcontroller.conf"
 
 python -c '__requires__ = ["CherryPy < 3.0"]; import pkg_resources; from nose.core import main; main()' \
 -v --logging-format='%(asctime)s %(name)s %(levelname)s %(message)s' \

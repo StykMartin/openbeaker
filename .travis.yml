@@ -1,6 +1,5 @@
 dist: bionic
-language: python
-python: '3.7'
+language: bash
 os: linux
 
 addons:
@@ -24,12 +23,12 @@ jobs:
       before_install: ./Misc/travis.sh before_install
       install: skip
       script: ./Misc/travis-create-vm-image.sh
-      workspaces:
-        create:
-          name: build-ws
-          paths:
-            - $HOME/.ssh/
-            - $HOME/CentOS-7-x86_64-GenericCloud-2003.raw
+#      workspaces:
+#        create:
+#          name: build-ws
+#          paths:
+#            - $HOME/.ssh/
+#            - $HOME/CentOS-7-x86_64-GenericCloud-2003.raw
       cache:
         directories:
           - $HOME/.ssh/

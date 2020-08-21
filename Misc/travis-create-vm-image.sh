@@ -11,17 +11,19 @@ CACHED_SSH_KEY=false
 
 cd "$HOME" || exit
 chmod a+x "$HOME"
+wget "$SUM_URL"
 
 SSH_KEY=$HOME/.ssh/id_rsa
 if [ ! -f "$SSH_KEY" ]; then
   ssh-keygen -N "" -f "$HOME/.ssh/id_rsa"
 else
+  ls -la $HOME/.ssh
   CACHED_SSH_KEY=true
 fi
 
+
 if [ $CACHED_SSH_KEY = false ] || [ ! -f "$HOME/$IMAGE_BASE_NAME" ]; then
   wget "$IMAGE_URL"
-  wget "$SUM_URL"
   sha256sum --ignore-missing -c ./sha256sum.txt
   tar -xvf $TAR_BASE_NAME
   sudo virt-sysprep -a "$IMAGE_BASE_NAME" \

@@ -235,20 +235,12 @@ Requires:       sudo
 # old style Python package names
 # These LC dependencies are needed in build due to tests
 BuildRequires:  python-lxml
-%if 0%{?rhel} == 7
-BuildRequires:  python2-gevent112
-%else
 BuildRequires:  python-gevent >= 1.0
-%endif
 Requires:       python-cpio
 Requires:       python-setuptools
 Requires:       python-lxml
 Requires:       python-gssapi
-%if 0%{?rhel} == 7
-Requires:       python2-gevent112
-%else
 Requires:       python-gevent >= 1.0
-%endif
 Requires:       python-daemon
 Requires:       python-werkzeug
 Requires:       python-flask

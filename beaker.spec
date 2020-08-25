@@ -470,7 +470,6 @@ chmod go-w %{_localstatedir}/log/%{name}/*.log >/dev/null 2>&1 || :
 %{python2_sitelib}/bkr/inttest/
 %{python2_sitelib}/beaker_integration_tests-*-nspkg.pth
 %{python2_sitelib}/beaker_integration_tests-*.egg-info/
-%{_datadir}/beaker-integration-tests
 %endif
 
 %files client

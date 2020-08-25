@@ -27,7 +27,7 @@ clean:
 
 .PHONY: check
 check:
-	./run-tests.sh
+	# No unit tests
 
 .PHONY: devel
 devel:

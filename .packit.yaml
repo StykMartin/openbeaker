@@ -16,3 +16,7 @@ jobs:
       - fedora-33-x86_64
       - fedora-rawhide-x86_64
       - centos-stream-x86_64
+
+# Hack the version so tag is not necessary for now
+actions:
+  get-current-version: "echo 0.1.0"

@@ -1,7 +1,3 @@
-%if 0%{?rhel} && 0%{?rhel} <= 6
-%{!?__python2: %global __python2 /usr/bin/python2}
-%{!?python2_sitelib: %global python2_sitelib %(%{__python2} -c "from distutils.sysconfig import get_python_lib; print(get_python_lib())")}
-%endif
 
 %if 0%{?fedora} >= 30 || 0%{?rhel} >= 8
 %bcond_without python3

@@ -1,7 +1,8 @@
 import fnmatch
 import os
-from glob import glob
+
 from setuptools import setup, find_packages
+
 
 def get_compose_layout():
     matches = []
@@ -31,8 +32,6 @@ setup(
         'server/database-dumps/*.sql',
         'server/kickstarts/*',
         'server/mail-templates/*',
-        'server/selenium/*.csv',
-        'server/selenium/invalid-task_file',
         'server/task-rpms/*'] +
         get_compose_layout()
     },
@@ -41,6 +40,5 @@ setup(
     install_requires=[
         'beaker-server',
         'beaker-client',
-        'selenium',
     ],
 )

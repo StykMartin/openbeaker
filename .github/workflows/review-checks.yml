@@ -20,6 +20,7 @@ jobs:
         dnf builddep *.spec -y
     - name: Build documentation
       run: |
+        export BKR_PY3=1
         make -C documentation html SPHINXOPTS="-W"
         mv documentation/_build/html /__w
     - uses: actions/upload-artifact@v1

@@ -10,12 +10,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Install utils
-      run: |
-        yum install -y git wget
-    - name: Fetch Beaker repository
-      run: |
-        wget https://beaker-project.org/yum/beaker-server-RedHatEnterpriseLinux.repo -P /etc/yum.repos.d/
     - name: Install Beaker dependency from specfile
       run: |
         yum-builddep *.spec -y

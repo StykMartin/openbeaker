@@ -10,6 +10,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
+    - name: Enable CentOS PowerTools repo
+      run: |
+        dnf install 'dnf-command(config-manager)' -y
+        dnf config-manager --set-enabled PowerTools
     - name: Install Beaker dependency from specfile
       run: |
         dnf install 'dnf-command(builddep)' -y

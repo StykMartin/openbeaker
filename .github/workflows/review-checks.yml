@@ -18,10 +18,13 @@ jobs:
       run: |
         dnf install 'dnf-command(builddep)' -y
         dnf builddep *.spec -y
+    - name: Install python3-sphinxcontrib-httpdomain from Fedora repo
+      run: |
+        dnf install https://kojipkgs.fedoraproject.org//vol/fedora_koji_archive02/packages/python-sphinxcontrib-httpdomain/1.7.0/1.fc28/noarch/python3-sphinxcontrib-httpdomain-1.7.0-1.fc28.noarch.rpm -y
     - name: Build documentation
       run: |
         export BKR_PY3=1
-        make -C documentation html SPHINXOPTS="-W"
+        make -C documentation html
         mv documentation/_build/html /__w
     - uses: actions/upload-artifact@v1
       with:

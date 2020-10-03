@@ -7,12 +7,7 @@
 import socket
 import unittest
 
-import six
-
-if six.PY2:
-    from bkr.common import xmlrpc2 as xmlrpc_interface
-if six.PY3:
-    from bkr.common import xmlrpc3 as xmlrpc_interface
+from bkr.common import xmlrpc3 as xmlrpc_interface
 
 
 class DummyTransport:

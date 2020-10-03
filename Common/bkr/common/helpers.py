@@ -6,13 +6,13 @@
 
 from __future__ import division
 
+import queue
 from threading import Thread, Event
 from logging import getLogger
 import tempfile
 import os
 import fcntl
 import errno
-from six.moves import queue
 
 log = getLogger(__name__)
 
@@ -100,20 +100,9 @@ class RepeatTimer(Thread):
             self.finished.clear()
 
 
-class SensitiveUnicode(unicode):
+class SensitiveUnicode():
     def __repr__(self):
         return '<repr blocked>'
-
-    def encode(self, *args, **kwargs):
-        return SensitiveStr(super(SensitiveUnicode, self).encode(*args, **kwargs))
-
-
-class SensitiveStr(str):
-    def __repr__(self):
-        return '<repr blocked>'
-
-    def decode(self, *args, **kwargs):
-        return SensitiveUnicode(super(SensitiveStr, self).decode(*args, **kwargs))
 
 
 # Would be nice if Python did this for us: http://bugs.python.org/issue8604

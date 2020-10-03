@@ -8,19 +8,14 @@
 import base64
 import os
 import tempfile
+import xmlrpc.client
+from urllib.parse import urlparse
 
 import gssapi
-import six
 import ssl
-from six.moves import urllib_parse as urlparse
-from six.moves import xmlrpc_client
 
 from bkr.common.pyconfig import PyConfigParser, ImproperlyConfigured
-
-if six.PY2:
-    from bkr.common.xmlrpc2 import CookieTransport, SafeCookieTransport, retry_request_decorator
-if six.PY3:
-    from bkr.common.xmlrpc3 import CookieTransport, SafeCookieTransport, retry_request_decorator
+from bkr.common.xmlrpc3 import CookieTransport, SafeCookieTransport, retry_request_decorator
 
 
 class AuthenticationError(Exception):
@@ -79,7 +74,7 @@ class HubProxy(object):
                 TransportClass = retry_request_decorator(CookieTransport)
             self._transport = TransportClass(**transport_args)
 
-        self._hub = xmlrpc_client.ServerProxy(
+        self._hub = xmlrpc.client.ServerProxy(
                 "%s/%s/" % (self._hub_url, self._client_type),
                 allow_none=True, transport=self._transport,
                 verbose=self._conf.get("DEBUG_XMLRPC"))
@@ -150,7 +145,7 @@ class HubProxy(object):
             """
             Convert hub url to kerberos principal.
             """
-            hostname = urlparse.urlparse(self._hub_url)[1]
+            hostname = urlparse(self._hub_url)[1]
             # remove port from hostname
             hostname = hostname.split(":")[0]
 

@@ -35,8 +35,8 @@ import itertools
 import keyword
 import token
 import tokenize
-import six
-from six.moves import StringIO
+from io import StringIO
+
 
 class ImproperlyConfigured(Exception):
     """
@@ -60,7 +60,7 @@ def get_dict_value(dictionary, key):
     except KeyError:
         if isinstance(key, str):
             matches = []
-            for pattern in six.iterkeys(dictionary):
+            for pattern in dictionary.keys():
                 if pattern == '*' or not isinstance(pattern, str):
                     # exclude '*', because it would match every time
                     continue

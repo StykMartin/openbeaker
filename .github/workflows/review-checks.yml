@@ -12,7 +12,8 @@ jobs:
     - uses: actions/checkout@v1
     - name: Install Beaker dependency from specfile
       run: |
-        yum-builddep *.spec -y
+        dnf install 'dnf-command(builddep)' -y
+        dnf builddep *.spec -y
     - name: Build documentation
       run: |
         make -C documentation html SPHINXOPTS="-W"

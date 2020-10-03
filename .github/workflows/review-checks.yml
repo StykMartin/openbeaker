@@ -6,7 +6,7 @@ jobs:
   check-docs:
     runs-on: ubuntu-latest
     container:
-      image: centos:7
+      image: centos:8
 
     steps:
     - uses: actions/checkout@v1

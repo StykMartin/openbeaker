@@ -88,7 +88,6 @@ from __future__ import print_function
 import sys
 
 import lxml.etree
-import six
 
 from bkr.client import BeakerCommand
 from bkr.client.task_watcher import *
@@ -167,12 +166,10 @@ class Job_Clone(BeakerCommand):
                                                   pretty_print=pretty,
                                                   xml_declaration=True,
                                                   encoding='utf8')
-                    if six.PY3:
-                        str_xml = str_xml.decode('utf-8')
+                    str_xml = str_xml.decode('utf-8')
                     print(str_xml)
                 if not dryrun:
-                    submitted_jobs.append(self.hub.jobs.upload(
-                        jobxml.decode('utf-8') if six.PY3 else jobxml))
+                    submitted_jobs.append(self.hub.jobs.upload(jobxml.decode('utf-8')))
                     print("Submitted: %s" % submitted_jobs)
             except (KeyboardInterrupt, SystemError):
                 raise

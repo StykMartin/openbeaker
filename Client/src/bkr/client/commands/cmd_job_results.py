@@ -77,7 +77,6 @@ See also
 from __future__ import print_function
 
 import lxml.etree
-import six
 
 from bkr.client import BeakerCommand
 
@@ -129,8 +128,7 @@ class Job_Results(BeakerCommand):
                                               pretty_print=prettyxml,
                                               xml_declaration=prettyxml,
                                               encoding='utf-8')
-                if six.PY3:  # Decode bytes to string (otherwise print will be broken)
-                    str_xml = str_xml.decode('utf-8')
+                str_xml = str_xml.decode('utf-8')
                 print(str_xml)
             elif format == 'junit-xml':
                 type, colon, id = task.partition(':')

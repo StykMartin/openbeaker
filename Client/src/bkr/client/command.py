@@ -10,8 +10,6 @@ import os
 import sys
 from optparse import Option
 
-import six
-
 from bkr.common.hub import HubProxy
 from bkr.common.pyconfig import PyConfigParser
 
@@ -140,7 +138,7 @@ class PluginContainer(object):
         return self._get_plugin(name)
 
     def __iter__(self):
-        return six.iterkeys(self.plugins)
+        return iter(self.plugins.keys())
 
     @classmethod
     def normalize_name(cls, name):
@@ -182,7 +180,7 @@ class PluginContainer(object):
                     normalized_name = normalize_function(plugin_class.__name__)
                     plugins[normalized_name] = plugin_class
 
-            for name, value in six.iteritems(plugins):
+            for name, value in plugins.items():
                 if result.get(name, value) != value:
                     raise RuntimeError(
                         "Cannot register plugin '%s'. "
@@ -371,7 +369,7 @@ class CommandOptionParser(optparse.OptionParser):
         commands = []
         admin_commands = []
 
-        for name, plugin in sorted(six.iteritems(self.container.plugins)):
+        for name, plugin in sorted(self.container.plugins.items()):
             if getattr(plugin, 'hidden', False):
                 continue
             is_admin = getattr(plugin, "admin", False)

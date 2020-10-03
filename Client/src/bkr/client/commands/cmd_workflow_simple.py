@@ -58,8 +58,7 @@ from __future__ import print_function
 
 import sys
 import xml.dom.minidom
-
-from six.moves.xmlrpc_client import Fault
+from xmlrpc.client import Fault
 
 from bkr.client import BeakerJob
 from bkr.client import BeakerRecipe

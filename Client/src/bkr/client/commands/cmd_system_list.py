@@ -138,10 +138,9 @@ from __future__ import print_function
 
 import optparse
 import sys
+from urllib import parse
 
 import lxml.etree
-import six
-from six.moves.urllib import parse
 
 from bkr.client import BeakerCommand, host_filter_presets
 
@@ -223,7 +222,7 @@ class System_List(BeakerCommand):
             ('tg_format', 'atom'),
             ('list_tgp_limit', 0),
         ]
-        for i, x in enumerate(six.iteritems(self.search)):
+        for i, x in enumerate(self.search.items()):
             if kwargs[x[0]]:
                 qs_args.extend([
                     ('systemsearch-%d.table' % i, x[1]),

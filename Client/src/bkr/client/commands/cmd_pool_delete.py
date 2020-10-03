@@ -45,9 +45,7 @@ See also
 :manpage:`bkr(1)`, :manpage:`bkr pool-create`, :manpage:`bkr pool-modify`
 
 """
-
-
-from six.moves.urllib import parse
+from urllib import parse
 
 from bkr.client import BeakerCommand
 

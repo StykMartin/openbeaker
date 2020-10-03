@@ -70,9 +70,9 @@ See also
 from __future__ import print_function
 
 import json
+import xmlrpc.client
 
 from datetime import datetime
-from six.moves import xmlrpc_client
 
 from bkr.client import BeakerCommand
 
@@ -81,7 +81,7 @@ def json_serial(obj):
     """
     JSON serializer for objects not serializable by default json code
     """
-    if isinstance(obj, xmlrpc_client.DateTime):
+    if isinstance(obj, xmlrpc.client.DateTime):
         return obj.value
     raise TypeError("Type %s not serializable" % type(obj))
 

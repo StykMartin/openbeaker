@@ -117,8 +117,7 @@ See also
 
 :manpage:`bkr(1)`
 """
-
-from six.moves.urllib import parse
+from urllib import parse
 
 from bkr.client import BeakerCommand
 

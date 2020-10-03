@@ -4,14 +4,13 @@
 # it under the terms of the GNU General Public License as published by
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
-
+import configparser
 import os
 import re
 import sys
 from optparse import OptionValueError, OptionGroup
 
 from lxml import etree
-from six.moves import configparser
 
 from bkr.client import BeakerCommand
 from bkr.client.task_watcher import *
@@ -610,7 +609,7 @@ class JobDefaults(configparser.ConfigParser):
                     )
         self.read(deffiles)
 
-    def read(self, fname):
+    def read(self, fname, **kwargs):
         """
         Wrapper around ConfigParser.ConfigParser.read()
         """

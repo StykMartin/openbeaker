@@ -4,17 +4,13 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-from setuptools import setup, find_packages
+from subprocess import getstatusoutput
 
-try:
-    from commands import getstatusoutput
-except ImportError:
-    from subprocess import getstatusoutput
+from setuptools import setup, find_packages
 
 
 def bash_completion_dir():
-    status, output = getstatusoutput(
-        'pkg-config --variable completionsdir bash-completion')
+    status, output = getstatusoutput('pkg-config --variable completionsdir bash-completion')
     if status or not output:
         return '/etc/bash_completion.d'
     return output.strip()
@@ -31,7 +27,6 @@ setup(
     install_requires=[
         'beaker-common',
         'lxml',
-        'six',
         'requests',
         'PrettyTable',
         'Jinja2',
@@ -54,7 +49,6 @@ setup(
     classifiers=[
         'Development Status :: 5 - Production/Stable',
         'Operating System :: POSIX :: Linux',
-        'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'License :: OSI Approved :: GNU General Public License v2 or later (GPLv2+)',

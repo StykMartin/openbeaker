@@ -13,12 +13,12 @@ import re
 import sys
 import xml.dom.minidom
 from optparse import OptionGroup
+from urllib.parse import urljoin
 
 import pkg_resources
-from six.moves.urllib_parse import urljoin
 
-from bkr.client.command import Command
 from bkr.common.pyconfig import PyConfigParser
+from bkr.client.command import Command
 
 user_config_file = os.environ.get("BEAKER_CLIENT_CONF", None)
 if not user_config_file:
@@ -28,8 +28,7 @@ if not user_config_file:
         user_config_file = user_conf
     elif os.path.exists(old_conf):
         user_config_file = old_conf
-        sys.stderr.write(
-            "%s is deprecated for config, please use %s instead\n" % (old_conf, user_conf))
+        sys.stderr.write("%s is deprecated for config, please use %s instead\n" % (old_conf, user_conf))
     else:
         pass
 

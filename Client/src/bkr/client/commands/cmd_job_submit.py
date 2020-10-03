@@ -107,7 +107,6 @@ import xml.dom.minidom
 
 import lxml.etree
 import pkg_resources
-import six
 
 from bkr.client import BeakerCommand
 from bkr.client.convert import Convert
@@ -221,11 +220,8 @@ stdin."""
         jobxmls = []
         for job in jobs:
             if job == '-':
-                if six.PY3:  # Handle piped non UTF-8 data
-                    with open(0, 'rb') as f:
-                        mystring = f.read()
-                else:
-                    mystring = sys.stdin.read()
+                with open(0, 'rb') as f:
+                    mystring = f.read()
             else:
                 mystring = open(job, "r").read()
             try:

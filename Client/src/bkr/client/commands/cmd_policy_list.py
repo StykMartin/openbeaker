@@ -83,9 +83,9 @@ See also
 from __future__ import print_function
 
 import json
+from urllib import parse
 
 from prettytable import PrettyTable
-from six.moves.urllib import parse
 
 from bkr.client import BeakerCommand
 

@@ -108,9 +108,9 @@ See also
 from __future__ import print_function
 
 import sys
+from xmlrpc.client import Fault
 
 import requests
-from six.moves.xmlrpc_client import Fault
 
 from bkr.client import BeakerCommand
 

@@ -4,25 +4,17 @@
 # the Free Software Foundation; either version 2 of the License, or
 # (at your option) any later version.
 
-# Use Python 2 if BKR_PY3 is not defined
-ifeq ($(BKR_PY3),)
-	BKR_PY3 :=0
-endif
-
-COMMAND:= $(shell if [[ $(BKR_PY3) == 0 ]]; then echo "python2"; else echo "python3"; fi)
-
 .PHONY: build
 build:
-	env PYTHONPATH=../Common:src:$${PYTHONPATH:+:$$PYTHONPATH} \
-	    $(COMMAND) setup.py build
+	env PYTHONPATH=../Common:src:$${PYTHONPATH:+:$$PYTHONPATH} python3 setup.py build
 
 .PHONY: install
 install:
-	$(COMMAND) setup.py install -O1 --skip-build --root $(DESTDIR)
+	python3 setup.py install -O1 --skip-build --root $(DESTDIR)
 
 .PHONY: clean
 clean:
-	$(COMMAND) setup.py clean
+	python3 setup.py clean
 	rm -rf build
 
 .PHONY: check

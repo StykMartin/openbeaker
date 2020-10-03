@@ -55,8 +55,7 @@ from __future__ import print_function
 
 import os.path
 import sys
-
-from six.moves import xmlrpc_client
+import xmlrpc.client
 
 from bkr.client import BeakerCommand
 
@@ -77,7 +76,7 @@ class Task_Add(BeakerCommand):
         failed = False
         for task in tasks:
             task_name = os.path.basename(task)
-            task_binary = xmlrpc_client.Binary(open(task, "rb").read())
+            task_binary = xmlrpc.client.Binary(open(task, "rb").read())
             print(task_name)
             try:
                 print(self.hub.tasks.upload(task_name, task_binary))

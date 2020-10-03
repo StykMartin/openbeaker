@@ -57,8 +57,7 @@ from __future__ import print_function
 
 import json
 import sys
-
-from six.moves import xmlrpc_client
+from xmlrpc.client import Fault
 
 from bkr.client import BeakerCommand
 
@@ -85,7 +84,7 @@ class Task_Delete(BeakerCommand):
                 failed = not output['success']
             except (KeyboardInterrupt, SystemExit):
                 raise
-            except xmlrpc_client.Fault as ex:
+            except Fault as ex:
                 failed = True
                 sys.stderr.write(ex.faultString + '\n')
             except Exception as ex:

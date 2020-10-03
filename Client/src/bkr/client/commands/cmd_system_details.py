@@ -54,7 +54,7 @@ See also
 
 from __future__ import print_function
 
-from six.moves.urllib import parse
+from urllib import parse
 
 from bkr.client import BeakerCommand
 
